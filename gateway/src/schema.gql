@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  createdAt: Int!
+  updatedAt: Int!
+  email: String!
+  username: String!
+  role: UserRole!
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+type Merchant {
+  id: ID!
+  createdAt: Int!
+  updatedAt: Int!
+  name: String!
+  phone: String!
+  address: String!
+  cityCode: Int!
+  districtCode: Int!
+  wardCode: Int!
+}
+
+type MerchantBranch {
+  id: ID!
+  createdAt: Int!
+  updatedAt: Int!
+  name: String!
+  phone: String!
+  address: String!
+  cityCode: Int!
+  districtCode: Int!
+  wardCode: Int!
+  merchantId: Int!
+}
+
+type Profile {
+  id: ID!
+  createdAt: Int!
+  updatedAt: Int!
+  userId: Int!
+  fullName: String!
+  phone: String!
+  address: String!
+  cityCode: Int!
+  districtCode: Int!
+  wardCode: Int!
+  dateOfBirth: Int!
+  monthOfBirth: Int!
+  yearOfBirth: Int!
+  type: ProfileType!
+}
+
+enum ProfileType {
+  CUSTOMER
+  EMPLOYEE
+}
+
+type ResponseAuthFromGrpc {
+  user: User!
+  profile: Profile!
+  merchant: Merchant!
+  merchantBranch: MerchantBranch!
+  accessToken: String!
+}
+
+type Query {
+  isAdmin: Boolean!
+}
+
+type Mutation {
+  login(inputLogin: InputLoginRequest!): ResponseAuthFromGrpc!
+  register(inputRegister: InputRegisterRequest!): ResponseAuthFromGrpc!
+}
+
+input InputLoginRequest {
+  email: String!
+  password: String!
+}
+
+input InputRegisterRequest {
+  email: String!
+  password: String!
+  confirmPassword: String!
+  fullName: String!
+  phone: String!
+  merchantPhone: String!
+  merchantName: String!
+  merchantAddress: String!
+  cityCode: Float!
+  districtCode: Float!
+  wardCode: Float!
+  merchantSubdomain: String!
+}
